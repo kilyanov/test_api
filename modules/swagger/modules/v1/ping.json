@@ -1,0 +1,27 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "Ping",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/ping": {
+            "get": {
+                "tags": [
+                    "Ping"
+                ],
+                "security": [],
+                "summary": "Ping - Pong",
+                "description": "Ping - Pong",
+                "responses": {
+                    "200": {
+                        "$ref": "oas.json#/components/responses/200"
+                    },
+                    "default": {
+                        "$ref": "oas.json#/components/responses/error"
+                    }
+                }
+            }
+        }
+    }
+}

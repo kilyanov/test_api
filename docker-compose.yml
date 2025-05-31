@@ -1,0 +1,61 @@
+version: '2'
+networks:
+  default:
+    driver: bridge
+services:
+  php:
+    networks:
+      - default
+    image: yiisoftware/yii2-php:8.4-fpm-nginx
+    depends_on:
+      - mysql-db
+    volumes:
+      - ~/.composer-docker/cache:/root/.composer/cache:delegated
+      - ./:/app:delegated
+      - ./docker/nginx/log:/var/log/nginx
+      - ./docker/conf/nginx:/etc/nginx/conf.d/
+    ports:
+      - '8000:80'
+  redis:
+    networks:
+      - default
+    image: redis:latest
+    hostname: redis
+    container_name: redis_container
+    environment:
+        - REDIS_PASSWORD=${REDIS_PASSWORD}
+        - REDIS_USER=${REDIS_USER}
+        - REDIS_USER_PASSWORD=${REDIS_USER_PASSWORD}
+    ports:
+        - "${REDIS_PORT}:6379"
+    volumes:
+        - ./docker/redisdata:/data
+    restart: unless-stopped
+    tty: true
+    stdin_open: true
+  mysql-db:
+    networks:
+      - default
+    image: mysql
+    hostname: mysql
+    ports:
+      - "${DB_PORT}:3306"
+    restart: always
+    environment:
+      MYSQL_DB: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_USER: root
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD_ROOT}
+    volumes:
+      - ./docker/mysql/var/lib:/var/lib/mysql
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    restart: always
+    depends_on:
+      - mysql-db
+    environment:
+      PMA_HOST: mysql
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD_ROOT}
+    ports:
+      - "8080:80"

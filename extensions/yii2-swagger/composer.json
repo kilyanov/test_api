@@ -1,0 +1,23 @@
+{
+    "name": "ext/yii2-swagger",
+    "description": "Swagger 3.0",
+    "type": "yii2-extension",
+    "version": "0.0.1",
+    "keywords": [
+        "yii2",
+        "extension",
+        "open api 3.0",
+        "swagger 3.0"
+    ],
+    "license": "BSD-3-Clause",
+    "require": {
+        "php": ">=7.1.0",
+        "yiisoft/yii2": "~2.0.36",
+        "bower-asset/swagger-ui": "~4.15"
+    },
+    "autoload": {
+        "psr-4": {
+            "ext\\swagger\\": "src"
+        }
+    }
+}

@@ -1,0 +1,308 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "Трекер",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/track/default/index": {
+            "get": {
+                "tags": [
+                    "Track"
+                ],
+                "summary": "Track: Список записей",
+                "description": "Список записей",
+                "parameters": [
+                    {
+                        "$ref": "oas.json#/components/parameters/page"
+                    },
+                    {
+                        "$ref": "oas.json#/components/parameters/per-page"
+                    },
+                    {
+                        "$ref": "oas.json#/components/parameters/filter"
+                    },
+                    {
+                        "$ref": "#/components/parameters/expand"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/track"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "oas.json#/components/responses/error"
+                    }
+                }
+            }
+        },
+        "/track/default/create": {
+            "post": {
+                "tags": [
+                    "Track"
+                ],
+                "summary": "Track: Создание записи",
+                "description": "Создание записи",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "track_number": {
+                                        "type": "string",
+                                        "description": "Номер трекера",
+                                        "example": "TR-123"
+                                    },
+                                    "status": {
+                                        "type": "integer",
+                                        "description": "Статус",
+                                        "example": 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/track"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "oas.json#/components/responses/error"
+                    }
+                }
+            }
+        },
+        "/track/default/edit": {
+            "patch": {
+                "tags": [
+                    "Track"
+                ],
+                "summary": "Track: Редактирование записи",
+                "description": "Редактирование записи",
+                "parameters": [
+                    {
+                        "$ref": "oas.json#/components/parameters/id"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "track_number": {
+                                        "type": "string",
+                                        "description": "Номер трекера",
+                                        "example": "TR-123"
+                                    },
+                                    "status": {
+                                        "type": "integer",
+                                        "description": "Статус",
+                                        "example": 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/track"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "oas.json#/components/responses/error"
+                    }
+                }
+            }
+        },
+        "/track/default/delete": {
+            "delete": {
+                "tags": [
+                    "Track"
+                ],
+                "summary": "Track: Удаление записи",
+                "description": "Удаление записи",
+                "parameters": [
+                    {
+                        "$ref": "oas.json#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "oas.json#/components/responses/200"
+                    },
+                    "default": {
+                        "$ref": "oas.json#/components/responses/error"
+                    }
+                }
+            }
+        },
+        "/track/default/delete-all": {
+            "post": {
+                "tags": [
+                    "Track"
+                ],
+                "summary": "Track: Удаление группы записей",
+                "description": "Удаление группы записей",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "oas.json#/components/schemas/uuid"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "oas.json#/components/responses/error"
+                    }
+                }
+            }
+        },
+        "/track/default/update-all": {
+            "post": {
+                "tags": [
+                    "Track"
+                ],
+                "summary": "Track: Массовое обновление записей",
+                "description": "Массовое обновление записей",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "uuids": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "oas.json#/components/schemas/uuid"
+                                        }
+                                    },
+                                    "attributes": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/components/schemas/updateAttributes"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "oas.json#/components/responses/error"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "parameters": {
+            "expand": {
+                "in": "query",
+                "name": "expand",
+                "schema": {
+                    "type": "string"
+                },
+                "example": "statusValue",
+                "description": "statusValue - Значение статуса"
+            }
+        },
+        "schemas": {
+            "updateAttributes": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "integer",
+                        "description": "Статус",
+                        "example": 1
+                    }
+                }
+            },
+            "track": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "$ref": "oas.json#/components/schemas/uuid"
+                    },
+                    "track_number": {
+                        "type": "string",
+                        "description": "Номер трекера",
+                        "example": "TR-123"
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "Поверен",
+                        "example": "verification"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "description": "Время создания",
+                        "example": "2025-03-13 15:00:00"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "description": "Время создания",
+                        "example": "2025-03-13 15:00:00"
+                    }
+                }
+            }
+        }
+    }
+}

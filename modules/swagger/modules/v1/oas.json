@@ -1,0 +1,311 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "TEST API",
+    "description": "API взаимодействия",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "description": "localhost",
+      "url": "http://127.0.0.1:8000/api/v1"
+    },
+    {
+      "description": "dev",
+      "url": "https://dev-api.test.ru/api/v1"
+    },
+    {
+      "description": "prod",
+      "url": "https://api.test.ru/api/v1"
+    }
+  ],
+  "paths": {
+    "/ping": {
+      "$ref": "ping.json#/paths/~1ping"
+    },
+    "/auth/default/login": {
+      "$ref": "auth.json#/paths/~1auth~1default~1login"
+    },
+    "/auth/default/logout": {
+      "$ref": "auth.json#/paths/~1auth~1default~1logout"
+    },
+    "/track/default/index": {
+      "$ref": "track.json#/paths/~1track~1default~1index"
+    },
+    "/track/default/create": {
+      "$ref": "track.json#/paths/~1track~1default~1create"
+    },
+    "/track/default/edit": {
+      "$ref": "track.json#/paths/~1track~1default~1edit"
+    },
+    "/track/default/delete": {
+      "$ref": "track.json#/paths/~1track~1default~1delete"
+    },
+    "/track/default/delete-all": {
+      "$ref": "track.json#/paths/~1track~1default~1delete-all"
+    },
+    "/track/default/update-all": {
+      "$ref": "track.json#/paths/~1track~1default~1update-all"
+    }
+  },
+  "components": {
+    "parameters": {
+      "filter": {
+        "in": "query",
+        "name": "filter",
+        "required": false,
+        "schema": {
+          "$ref": "#/components/schemas/filter"
+        }
+      },
+      "id": {
+        "in": "query",
+        "name": "id",
+        "required": true,
+        "schema": {
+          "$ref": "#/components/schemas/uuid"
+        }
+      },
+      "ids": {
+        "in": "query",
+        "name": "ids[]",
+        "required": true,
+        "schema": {
+          "$ref": "#/components/schemas/ids"
+        }
+      },
+      "page": {
+        "in": "query",
+        "name": "page",
+        "required": false,
+        "schema": {
+          "$ref": "#/components/schemas/page"
+        }
+      },
+      "per-page": {
+        "in": "query",
+        "name": "per-page",
+        "required": false,
+        "schema": {
+          "$ref": "#/components/schemas/per-page"
+        }
+      },
+      "sort": {
+        "in": "query",
+        "name": "sort",
+        "required": false,
+        "schema": {
+          "$ref": "#/components/schemas/sort"
+        }
+      },
+      "accessToken": {
+        "in": "query",
+        "name": "accessToken",
+        "required": true,
+        "schema": {
+          "$ref": "#/components/schemas/accessToken"
+        }
+      }
+    },
+    "schemas": {
+      "null": {
+        "example": null,
+        "nullable": true
+      },
+      "id": {
+        "type": "integer",
+        "description": "ID",
+        "example": 1
+      },
+      "ids": {
+        "type": "array",
+        "description": "IDs",
+        "items": {
+          "type": "integer"
+        },
+        "example": [
+          1,
+          2,
+          3
+        ]
+      },
+      "increment": {
+        "type": "integer",
+        "description": "increment",
+        "example": 123456789
+      },
+      "uuid": {
+        "type": "string",
+        "example": "747adf26-a673-435c-9d1c-397c08e6df8f"
+      },
+      "createdAt": {
+        "type": "string",
+        "description": "Дата добавления",
+        "example": "2025-01-25 10:10:10",
+        "nullable": true
+      },
+      "updatedAt": {
+        "type": "string",
+        "description": "Дата изменения",
+        "example": "2025-01-25 10:10:10",
+        "nullable": true
+      },
+      "page": {
+        "type": "integer",
+        "description": "Текущая страница",
+        "example": 1
+      },
+      "per-page": {
+        "type": "integer",
+        "description": "Кол-во записей на странице",
+        "example": 20
+      },
+      "sort": {
+        "type": "string",
+        "description": "Сортировка",
+        "example": "sort"
+      },
+      "accessToken": {
+        "type": "string",
+        "description": "Токен",
+        "nullable": false,
+        "example": "MlXGHCKHCV4B6NvfFynvvWbYI"
+      },
+      "filter": {
+        "type": "object",
+        "description": "Фильтрация",
+        "externalDocs": {
+          "description": "Подробнее",
+          "url": "https://github.com/yiisoft/yii2/blob/2.0.47/docs/guide/rest-filtering-collections.md"
+        },
+        "properties": {
+          "filter[id][in][]": {
+            "$ref": "oas.json#/components/schemas/id"
+          }
+        },
+        "example": {
+          "filter[id][in][]": 1,
+          "filter[id][gte]": 1,
+          "filter[id][lte]": 10,
+          "filter[title][eq]": "Заголовок",
+          "filter[description][like]": "Описание",
+          "filter[author][like]": "Пушкин | Есенин",
+          "filter[or][0][login][eq]": "administrator",
+          "filter[or][1][login][eq]": "user",
+          "filter[data][like]": "Описание",
+          "filter[*][like]": "Текст"
+        }
+      },
+      "fields": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "attribute": {
+              "type": "string",
+              "description": "Атрибут",
+              "example": "createdAt"
+            },
+            "type": {
+              "type": "string",
+              "description": "Тип",
+              "example": "date"
+            },
+            "filter": {
+              "type": "object",
+              "properties": {
+                "operator": {
+                  "type": "string",
+                  "description": "Оператор сравнения",
+                  "example": "eq"
+                },
+                "multiple": {
+                  "type": "boolean",
+                  "description": "Множественный выбор",
+                  "example": false
+                },
+                "between": {
+                  "type": "boolean",
+                  "description": "Интервал",
+                  "example": false
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "example": []
+            }
+          }
+        }
+      },
+      "error": {
+        "description": "В случае возникновения ошибки.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "Unauthorized"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Your request was made with invalid credentials"
+                    },
+                    "code": {
+                      "type": "integer",
+                      "example": 0
+                    },
+                    "status": {
+                      "type": "integer",
+                      "example": 401
+                    },
+                    "type": {
+                      "type": "string",
+                      "example": "yii\\web\\UnauthorizedHttpException"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearer": {
+        "type": "http",
+        "scheme": "bearer"
+      },
+      "access-token": {
+        "type": "apiKey",
+        "name": "access-token",
+        "in": "query"
+      }
+    }
+  },
+  "security": [
+    {
+      "bearer": []
+    },
+    {
+      "access-token": []
+    }
+  ]
+}
