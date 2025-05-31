@@ -71,9 +71,9 @@
                                         "example": "TR-123"
                                     },
                                     "status": {
-                                        "type": "integer",
+                                        "type": "string",
                                         "description": "Статус",
-                                        "example": 1
+                                        "example": "new"
                                     }
                                 }
                             }
@@ -122,9 +122,9 @@
                                         "example": "TR-123"
                                     },
                                     "status": {
-                                        "type": "integer",
+                                        "type": "string",
                                         "description": "Статус",
-                                        "example": 1
+                                        "example": "new"
                                     }
                                 }
                             }
@@ -269,9 +269,9 @@
                 "type": "object",
                 "properties": {
                     "status": {
-                        "type": "integer",
+                        "type": "string",
                         "description": "Статус",
-                        "example": 1
+                        "example": "new"
                     }
                 }
             },
@@ -288,8 +288,8 @@
                     },
                     "status": {
                         "type": "string",
-                        "description": "Поверен",
-                        "example": "verification"
+                        "description": "Статус",
+                        "example": "new"
                     },
                     "createdAt": {
                         "type": "string",
