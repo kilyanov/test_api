@@ -42,6 +42,7 @@ docker compose exec php composer install
 
 docker compose exec php composer update
 ```
+Базу данных нужно будет ручками создать.
 
 Применение миграций
 ```bash
@@ -55,7 +56,10 @@ docker compose exec php ./yii migrate
 docker compose exec php ./yii role
 ```
 
-Создание пользователя логин и пароль admin/admin
+Создание пользователя логин и пароль  
+admin/admin - Администратор, 
+moderator/moderator - Ответственный по заявкам, 
+user/user - Пользователь
 ```bash
 
 docker compose exec php ./yii user
@@ -70,10 +74,4 @@ chmod 777 -R web
 chmod 777 -R runtime
 chmod 777 -R web/assets
 ```
-
-После запуска Docker (сеть сделал default) и внесения необходимых настроек в .env
 Swagger будет доступен по адресу http://127.0.0.1:8000/swagger/v1/default/doc
-
-Авторизация реализована через bearer или access-token - как кому удобнее
-
-GRUD по адресу http://127.0.0.1:8000/ - по оформлению сильно не заморачивался

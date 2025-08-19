@@ -51,7 +51,7 @@ class UserController extends Controller
             'status' => StatusAttributeInterface::STATUS_ACTIVE,
         ]);
         $userUser->setScenario(User::SCENARIO_CREATE);
-        $userUser->setPassword('moderator');
+        $userUser->setPassword('user');
         $userUser->generateAuthKey();
         $userUser->save();
         $userRole = $auth->getRole(CollectionRolls::ROLE_USER);

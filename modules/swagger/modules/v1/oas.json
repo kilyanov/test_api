@@ -40,6 +40,9 @@
     },
     "/requests/default/delete": {
       "$ref": "requests.json#/paths/~1requests~1default~1delete"
+    },
+    "/requests/default/in-job": {
+      "$ref": "requests.json#/paths/~1requests~1default~1in-job"
     }
   },
   "components": {

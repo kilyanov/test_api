@@ -10,10 +10,10 @@ use yii\db\BaseActiveRecord;
 
 class IdAttributeBehavior extends AttributeBehavior
 {
-    public const TYPE_INTEGER = 0;
-    public const TYPE_UUID_V6 = 6;
+    public const int TYPE_INTEGER = 0;
+    public const int TYPE_UUID_V6 = 6;
 
-    public const ATTRIBUTE_NAME = 'id';
+    public const string ATTRIBUTE_NAME = 'id';
 
     public function __construct(
         public readonly int $typePrimary = self::TYPE_UUID_V6,

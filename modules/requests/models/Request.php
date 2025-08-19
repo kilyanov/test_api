@@ -46,22 +46,7 @@ class Request extends ActiveRecord implements StatusRequestInterface
             [['name', 'email', 'message',], 'required'],
             [['message', 'comment'], 'string'],
             [['comment'], 'default', 'value' => null],
-            [
-                ['comment'],
-                'required',
-                'when' => function (Request $model) {
-                    return $model->status === self::STATUS_RESOLVE;
-                },
-            ],
-            [
-                ['comment'],
-                'string',
-                'min' => 2,
-                'when' => function (Request $model) {
-                    return $model->status === self::STATUS_RESOLVE;
-                },
-            ],
-            [['createdAt', 'updatedAt'], 'safe'],
+            [['createdAt', 'updatedAt', 'id'], 'safe'],
             ['email', 'email',],
             [['name', 'email'], 'string', 'max' => 255],
             [

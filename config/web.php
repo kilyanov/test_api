@@ -40,11 +40,6 @@ $config = [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        'mailer' => [
-            'class' => yii\symfonymailer\Mailer::class,
-            'viewPath' => '@app/mail',
-            'useFileTransport' => true,
-        ],
         'urlManager' => [
             'class' => yii\web\UrlManager::class,
             'enablePrettyUrl' => true,

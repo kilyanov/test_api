@@ -40,6 +40,7 @@ return [
             RequestNotificationServer::class => function () {
                 $server = new RequestNotificationServer(new SplObjectStorage());
                 $server->attach(new UserNotificationObserver());
+                return $server;
             }
         ],
     ],

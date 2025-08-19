@@ -29,8 +29,6 @@
         "vlucas/phpdotenv": "~3.6.0",
         "phpoffice/phpspreadsheet": "~1.29.0",
         "symfony/uid": "~6.1.5",
-        "ext/yii2-filesystem": "0.0.1",
-        "ext/yii2-repository": "0.0.1",
         "ext/yii2-behaviors": "0.0.2",
         "monolog/monolog": "^2.10",
         "ext/yii2-swagger": "0.0.1",

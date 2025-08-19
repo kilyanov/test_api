@@ -16,6 +16,11 @@ class RequestNotificationServer implements SplSubject
     /**
      * @var string
      */
+    protected string $subject;
+
+    /**
+     * @var string
+     */
     protected string $message;
 
     /**
@@ -94,6 +99,24 @@ class RequestNotificationServer implements SplSubject
     {
         $this->message = $message;
 
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSubject(): string
+    {
+        return $this->subject;
+    }
+
+    /**
+     * @param string $subject
+     * @return $this
+     */
+    public function setSubject(string $subject): self
+    {
+        $this->subject = $subject;
         return $this;
     }
 }
