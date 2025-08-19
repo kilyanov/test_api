@@ -1,5 +1,7 @@
 <?php
 
+use app\modules\requests\observers\UserNotificationObserver;
+use app\modules\requests\RequestNotificationServer;
 use League\Tactician\CommandBus;
 use yii\di\ServiceLocator;
 use yii\rbac\DbManager;
@@ -35,7 +37,11 @@ return [
             },
         ],
         'definitions' => [
-
+            RequestNotificationServer::class => function () {
+                $server = new RequestNotificationServer(new SplObjectStorage());
+                $server->attach(new UserNotificationObserver());
+                return $server;
+            }
         ],
     ],
     'modules' => [

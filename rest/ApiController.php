@@ -1,8 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace app\rest;
 
-use Yii;
 use yii\filters\AccessControl;
 use yii\filters\auth\CompositeAuth;
 use yii\filters\auth\HttpBearerAuth;
@@ -12,8 +13,6 @@ use yii\filters\Cors;
 use yii\filters\RateLimiter;
 use yii\filters\VerbFilter;
 use yii\rest\Controller;
-use yii\web\JsonParser;
-use yii\web\MultipartFormDataParser;
 use yii\web\Response;
 
 class ApiController extends Controller
@@ -67,7 +66,7 @@ class ApiController extends Controller
         return [
             'index' => ['GET', 'OPTIONS'],
             'create' => ['POST', 'OPTIONS'],
-            'update' => ['PATH', 'OPTIONS'],
+            'update' => ['PATCH', 'OPTIONS'],
             'view' => ['GET', 'OPTIONS'],
             'delete' => ['DELETE', 'OPTIONS'],
             'delete-all' => ['POST', 'OPTIONS'],

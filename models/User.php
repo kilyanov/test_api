@@ -19,7 +19,6 @@ use yii\web\IdentityInterface;
  *
  * @property string $id ID
  * @property string $username Логин
- * @property string|null $unitId Подразделение
  * @property string $auth_key Ключ
  * @property string $password_hash Пароль
  * @property string $email Email
@@ -36,9 +35,9 @@ class User extends ActiveRecord implements IdentityInterface, StatusAttributeInt
 {
     use StatusAttributeTrait;
 
-    const SCENARIO_CREATE = 'create';
+    const string SCENARIO_CREATE = 'create';
 
-    const SCENARIO_REFRESH_TOKEN = 'refresh_token';
+    const string SCENARIO_REFRESH_TOKEN = 'refresh_token';
 
     /**
      * {@inheritdoc}
@@ -87,15 +86,15 @@ class User extends ActiveRecord implements IdentityInterface, StatusAttributeInt
     public function rules(): array
     {
         return [
-            [['unitId', 'accessToken'], 'default', 'value' => null],
+            [['accessToken'], 'default', 'value' => null],
             [['status'], 'default', 'value' => 1],
             [['username', 'auth_key', 'password_hash', 'email',], 'required'],
             [['status'], 'integer'],
             [['createdAt', 'updatedAt'], 'safe'],
-            [['username', 'unitId', 'password_hash', 'email',], 'string', 'max' => 255],
+            [['username', 'password_hash', 'email',], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32],
-            [['id'], 'unique'],
             [['username'], 'unique'],
+            [['email'], 'email'],
             [['email'], 'unique'],
             [
                 ['auth_key', 'accessToken'],
@@ -125,7 +124,6 @@ class User extends ActiveRecord implements IdentityInterface, StatusAttributeInt
         return [
             'id' => 'ID',
             'username' => 'Логин',
-            'unitId' => 'Подразделение',
             'auth_key' => 'Ключ',
             'password_hash' => 'Пароль',
             'email' => 'Email',

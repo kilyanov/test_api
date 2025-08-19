@@ -29,7 +29,7 @@ $config = [
             'migrationPath' => [
                 '@app/migrations',
                 '@app/modules/user/migrations',
-                '@app/modules/track/migrations',
+                '@app/modules/requests/migrations',
             ],
             'interactive' => false,
         ],

@@ -29,23 +29,20 @@
     "/auth/default/logout": {
       "$ref": "auth.json#/paths/~1auth~1default~1logout"
     },
-    "/track/default/index": {
-      "$ref": "track.json#/paths/~1track~1default~1index"
+    "/requests/default/index": {
+      "$ref": "requests.json#/paths/~1requests~1default~1index"
     },
-    "/track/default/create": {
-      "$ref": "track.json#/paths/~1track~1default~1create"
+    "/requests/default/create": {
+      "$ref": "requests.json#/paths/~1requests~1default~1create"
     },
-    "/track/default/edit": {
-      "$ref": "track.json#/paths/~1track~1default~1edit"
+    "/requests/default/update": {
+      "$ref": "requests.json#/paths/~1requests~1default~1update"
     },
-    "/track/default/delete": {
-      "$ref": "track.json#/paths/~1track~1default~1delete"
+    "/requests/default/delete": {
+      "$ref": "requests.json#/paths/~1requests~1default~1delete"
     },
-    "/track/default/delete-all": {
-      "$ref": "track.json#/paths/~1track~1default~1delete-all"
-    },
-    "/track/default/update-all": {
-      "$ref": "track.json#/paths/~1track~1default~1update-all"
+    "/requests/default/in-job": {
+      "$ref": "requests.json#/paths/~1requests~1default~1in-job"
     }
   },
   "components": {

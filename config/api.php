@@ -30,8 +30,8 @@ $config = [
                 'auth' => [
                     'class' => app\modules\auth\modules\v1\Module::class,
                 ],
-                'track' => [
-                    'class' => app\modules\track\modules\v1\Module::class,
+                'requests' => [
+                    'class' => app\modules\requests\modules\v1\Module::class,
                 ],
             ],
         ],
