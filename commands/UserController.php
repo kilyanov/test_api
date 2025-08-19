@@ -22,7 +22,6 @@ class UserController extends Controller
     {
         $auth = Yii::$app->authManager;
         $userRoot = new User([
-            'id' => Uuid::v6()->__toString(),
             'username' => 'admin',
             'email' => 'test@yandex.ru',
             'status' => StatusAttributeInterface::STATUS_ACTIVE,
@@ -34,5 +33,29 @@ class UserController extends Controller
         $rootRole = $auth->getRole(CollectionRolls::ROLE_ROOT);
         $auth->assign($rootRole, $userRoot->id);
         echo 'ADD OK ' . CollectionRolls::ROLE_ROOT . ' ID# ' . $userRoot->id . PHP_EOL;
+        $userModerator = new User([
+            'username' => 'moderator',
+            'email' => 'moderator@yandex.ru',
+            'status' => StatusAttributeInterface::STATUS_ACTIVE,
+        ]);
+        $userModerator->setScenario(User::SCENARIO_CREATE);
+        $userModerator->setPassword('moderator');
+        $userModerator->generateAuthKey();
+        $userModerator->save();
+        $moderatorRole = $auth->getRole(CollectionRolls::ROLE_MODERATOR);
+        $auth->assign($moderatorRole, $userModerator->id);
+        echo 'ADD OK ' . CollectionRolls::ROLE_MODERATOR . ' ID# ' . $userModerator->id . PHP_EOL;
+        $userUser = new User([
+            'username' => 'user',
+            'email' => 'user@yandex.ru',
+            'status' => StatusAttributeInterface::STATUS_ACTIVE,
+        ]);
+        $userUser->setScenario(User::SCENARIO_CREATE);
+        $userUser->setPassword('moderator');
+        $userUser->generateAuthKey();
+        $userUser->save();
+        $userRole = $auth->getRole(CollectionRolls::ROLE_USER);
+        $auth->assign($userRole, $userUser->id);
+        echo 'ADD OK ' . CollectionRolls::ROLE_USER . ' ID# ' . $userUser->id . PHP_EOL;
     }
 }

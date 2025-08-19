@@ -22,12 +22,6 @@ class DefaultController extends Controller
     public function init(): void
     {
         Yii::$app->log->targets['file']->enabled = false;
-        Yii::$app->getResponse()->format = Response::FORMAT_HTML;
-        Yii::$app->getResponse()->on(
-            Response::EVENT_BEFORE_SEND,
-            function ($event) {
-            }
-        );
         parent::init();
     }
 
@@ -58,9 +52,9 @@ class DefaultController extends Controller
                 'class' => ApiAction::class,
                 'path' => Yii::getAlias('@app/modules/swagger/modules/v1/auth.json'),
             ],
-            'track' => [
+            'requests' => [
                 'class' => ApiAction::class,
-                'path' => Yii::getAlias('@app/modules/swagger/modules/v1/track.json'),
+                'path' => Yii::getAlias('@app/modules/swagger/modules/v1/requests.json'),
             ],
         ];
     }

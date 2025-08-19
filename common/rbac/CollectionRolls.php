@@ -7,6 +7,8 @@ namespace app\common\rbac;
 class CollectionRolls
 {
     public const ROLE_ROOT = 'admin';
+    public const ROLE_MODERATOR = 'moderator';
+    public const ROLE_USER = 'user';
 
     /**
      * @return string[]
@@ -15,6 +17,8 @@ class CollectionRolls
     {
         return [
             self::ROLE_ROOT => 'Администратор',
+            self::ROLE_MODERATOR => 'Модератор',
+            self::ROLE_USER => 'Пользователь',
         ];
     }
 

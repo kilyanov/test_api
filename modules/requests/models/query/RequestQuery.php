@@ -1,21 +1,19 @@
 <?php
 
-declare(strict_types=1);
-
-namespace app\modules\track\models\query;
+namespace app\modules\requests\models\query;
 
 use app\common\db\traits\DefaultActiveQueryTrait;
-use app\modules\track\models\Track;
+use app\modules\requests\models\Request;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 
-class TrackQuery extends ActiveQuery
+class RequestQuery extends ActiveQuery
 {
     use DefaultActiveQueryTrait;
 
     /**
      * {@inheritdoc}
-     * @return Track[]|array
+     * @return Request[]|array
      */
     public function all($db = null)
     {

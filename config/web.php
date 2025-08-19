@@ -19,9 +19,6 @@ $config = [
                 ],
             ],
         ],
-        'track' => [
-            'class' => app\modules\track\Module::class,
-        ],
     ],
     'components' => [
         'request' => [

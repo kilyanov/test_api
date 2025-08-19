@@ -102,19 +102,16 @@ abstract class AbstractController extends ApiController
      */
     public function actionDelete(string $id): array
     {
-        $model = $this->findModel($id);
         $this->findModel($id)->delete();
         return [];
     }
 
     /**
      * @return array
-     * @throws NotFoundHttpException
      */
     public function actionDeleteAll(): array
     {
         if ($uuids = $this->request->post('uuids')) {
-            $model = $this->findModel($uuids[0]);
             return [$this->getModel()::deleteAll(['id' => $uuids])];
         }
 
